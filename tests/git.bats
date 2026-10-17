@@ -109,7 +109,10 @@ write_old_gitconfig() {
 }
 
 @test "repo .gitconfig has no identity or LFS filter and resolves it through the include" {
-  ! grep -qE '^\[user\]|filter "lfs"' "$REPO_ROOT/home/.gitconfig"
+  # grep exits 1 on no match (2 on error). A bare `! grep` here would never fail the test:
+  # bats' errexit ignores negated commands that are not the last line.
+  run grep -qE '^\[user\]|filter "lfs"' "$REPO_ROOT/home/.gitconfig"
+  [ "$status" -eq 1 ]
   cp "$REPO_ROOT/home/.gitconfig" "$HOME/.gitconfig"
   run_git_step 1 <<<$'Ana\nana@example.com'
   [ "$(git config --global --includes user.email)" = "ana@example.com" ]
