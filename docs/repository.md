@@ -14,6 +14,7 @@ Esta página es para modificar el setup: agregar archivos, paquetes o pasos, cor
 | `manifest.claude.txt` | Los de Claude Code, que copia el paso `claude` (así `--skip claude` los deja intactos) |
 | `Brewfile`, `Brewfile.full` | Paquetes core y personales |
 | `vscode/extensions.txt` | Extensiones de VS Code |
+| `scripts/` | Herramientas del repo: `deploy-docs.sh` publica este sitio |
 | `tests/` | Tests ([bats](https://github.com/bats-core/bats-core)) |
 | `docs/`, `mkdocs.yml` | Este sitio |
 
@@ -75,7 +76,7 @@ Crea `steps/NN-nombre.sh`. El número define el orden. El paso:
 
 ```bash
 bats tests/                                  # tests
-shellcheck install.sh lib/*.sh steps/*.sh    # lint
+shellcheck install.sh lib/*.sh steps/*.sh scripts/*.sh   # lint
 ```
 
 Los dos vienen en `Brewfile`. No hay CI: córrelos antes de cada commit.
@@ -86,6 +87,7 @@ Los dos vienen en `Brewfile`. No hay CI: córrelos antes de cada commit.
 | `install.bats` | Opciones, orden de pasos y `--skip`, con pasos de prueba |
 | `lib.bats` | Las funciones de `lib/` |
 | `<paso>.bats` | Cada paso, con comandos del sistema (`brew`, `uname`…) simulados |
+| `deploy-docs.bats` | `scripts/deploy-docs.sh`, con `python3`, `pip` y `mkdocs` simulados |
 
 Los tests nunca instalan nada ni tocan tu `$HOME`: simulan los comandos del sistema y trabajan en carpetas temporales.
 
@@ -116,9 +118,15 @@ python3 -m venv .venv
 ### Publicar
 
 ```bash
-.venv/bin/mkdocs gh-deploy
+./scripts/deploy-docs.sh            # publica
+./scripts/deploy-docs.sh --dry-run  # solo construye; no sube nada
 ```
 
-Construye el sitio y lo sube a la rama `gh-pages` del repo en GitHub (hace push). El sitio queda en https://theoneandonlyjohnny.github.io/dev_setup/ en uno o dos minutos.
+El script:
+
+1. Se detiene si hay cambios sin commit en `docs/`, `mkdocs.yml` o `requirements-docs.txt`: el sitio publicado debe coincidir con el repo.
+2. Crea `.venv/` si no existe e instala `requirements-docs.txt`.
+3. Construye con `--strict`. Si hay un link roto, se detiene.
+4. Corre `mkdocs gh-deploy --force`, que sube el sitio a la rama `gh-pages` (hace push). El sitio queda en https://theoneandonlyjohnny.github.io/dev_setup/ en uno o dos minutos.
 
 La primera vez, en GitHub: **Settings → Pages → Build and deployment → Deploy from a branch → `gh-pages` / `(root)`**.
