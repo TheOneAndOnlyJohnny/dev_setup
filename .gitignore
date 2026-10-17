@@ -1,0 +1,43 @@
+# macOS
+.DS_Store
+
+# Local overrides & secrets — never versioned
+*.local
+.env
+.env.*
+*.pem
+*.key
+
+# Claude Code project files: kept on the author's machine only (anchored so they don't
+# match home/.claude/CLAUDE.md, which is versioned)
+/CLAUDE.md
+/CLAUDE.local.md
+/.claude/
+/EXECUTION_PLAN.md
+/OBJECTIVES.md
+
+# Private state that must never land in home/ (defense in depth)
+home/.ssh/
+home/.gnupg/
+home/.zsh_history
+home/.zsh_sessions/
+home/.zcompdump*
+home/.claude.json
+
+# Claude Code: only the global rules and sanitized settings are versioned
+home/.claude/*
+!home/.claude/CLAUDE.md
+!home/.claude/settings.json
+
+# Terminal runtime state: only the hand-written configs are tracked
+home/.config/herdr/*
+!home/.config/herdr/config.toml
+home/Library/Application Support/com.mitchellh.ghostty/auto/
+
+# VS Code state: only settings.json is tracked
+home/Library/Application Support/Code/User/*
+!home/Library/Application Support/Code/User/settings.json
+
+# Docs site: build output and local venv
+site/
+.venv/

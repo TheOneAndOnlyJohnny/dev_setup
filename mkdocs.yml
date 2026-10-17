@@ -1,0 +1,90 @@
+# Docs site (MkDocs + Material), published to GitHub Pages with `mkdocs gh-deploy`.
+# Keep one nav page per line: tests/repo.bats checks nav ↔ docs/*.md with grep.
+site_name: dev_setup
+site_description: Mi entorno de desarrollo para macOS (Apple Silicon), documentado y reproducible con un solo script.
+site_author: Juan Guzman
+site_url: https://theoneandonlyjohnny.github.io/dev_setup/
+repo_url: https://github.com/theoneandonlyjohnny/dev_setup
+repo_name: theoneandonlyjohnny/dev_setup
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: es
+  icon:
+    logo: material/console
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Cambiar a modo oscuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Cambiar a modo claro
+  features:
+    - content.action.edit
+    - content.code.copy
+    - navigation.footer
+    - navigation.instant
+    - navigation.sections
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.suggest
+    - toc.follow
+
+extra_css:
+  - stylesheets/catppuccin.css
+
+plugins:
+  - search:
+      lang: es
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+# `mkdocs build --strict` turns these warnings into errors (broken links and anchors).
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn
+
+nav:
+  - Inicio: index.md
+  - Instalación: install.md
+  - El setup:
+      - Apps y paquetes: apps.md
+      - Shell: shell.md
+      - Terminal: terminal.md
+      - Editor: editor.md
+      - Fuentes y colores: fonts-and-colors.md
+      - Git: git.md
+      - Claude Code: claude-code.md
+  - Cómo funciona el repo: repository.md

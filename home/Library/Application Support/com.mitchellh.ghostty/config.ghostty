@@ -1,0 +1,5 @@
+font-family = "IosevkaTerm Nerd Font Mono"
+theme = Catppuccin Frappe
+window-padding-x = 10
+window-padding-y = 10
+window-padding-balance = true

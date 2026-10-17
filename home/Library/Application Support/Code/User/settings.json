@@ -1,0 +1,17 @@
+{
+    "workbench.colorTheme": "Catppuccin Frappé",
+    "workbench.iconTheme": "catppuccin-frappe",
+    "chat.titleBar.openInAgentsWindow.enabled": false,
+    "workbench.activityBar.compact": true,
+    "workbench.activityBar.location": "top",
+    "projectManager.git.baseFolders": [
+        "~/Workspace"
+    ],
+    "workbench.startupEditor": "none",
+    "editor.fontFamily": "IosevkaTerm NFM ExtraLight",
+    "git.autofetch": true,
+    "editor.minimap.enabled": false,
+    "workbench.preferredDarkColorTheme": "Catppuccin Frappé",
+    "workbench.preferredLightColorTheme": "Catppuccin Latte",
+    "svelte.enable-ts-plugin": true
+}

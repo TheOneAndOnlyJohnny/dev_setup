@@ -1,0 +1,22 @@
+# VS Code extensions installed by steps/60-vscode.sh (one ID per line, missing ones only).
+
+# --- Theme (referenced by settings.json) ---
+catppuccin.catppuccin-vsc
+catppuccin.catppuccin-vsc-icons
+
+# --- Web ---
+bradlc.vscode-tailwindcss
+dbaeumer.vscode-eslint
+esbenp.prettier-vscode
+svelte.svelte-vscode
+
+# --- Data & config files ---
+cweijan.vscode-postgresql-client2
+cweijan.dbclient-jdbc
+mikestead.dotenv
+redhat.vscode-yaml
+tamasfe.even-better-toml
+
+# --- Tools ---
+alefragnani.project-manager
+ms-azuretools.vscode-containers

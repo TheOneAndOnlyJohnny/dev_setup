@@ -1,0 +1,3 @@
+# Docs site tooling (MkDocs + Material). Not part of the dev environment: install in a venv.
+#   python3 -m venv .venv && .venv/bin/pip install -r requirements-docs.txt
+mkdocs-material==9.7.7

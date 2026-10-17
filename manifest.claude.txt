@@ -1,0 +1,5 @@
+# Claude Code files copied by steps/70-claude.sh (repo home/ → $HOME), so `--skip claude`
+# leaves an existing Claude Code setup alone. Same format and rules as manifest.txt.
+# settings.json is sanitized: no autoMode, no hooks (Herdr regenerates its hook).
+.claude/CLAUDE.md
+.claude/settings.json
