@@ -1,0 +1,2290 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Mi entorno de desarrollo para macOS (Apple Silicon), documentado y reproducible con un solo script.">
+      
+      
+        <meta name="author" content="Juan Guzman">
+      
+      
+        <link rel="canonical" href="https://theoneandonlyjohnny.github.io/dev_setup/claude-code/">
+      
+      
+        <link rel="prev" href="../git/">
+      
+      
+        <link rel="next" href="../repository/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Claude Code - dev_setup</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/catppuccin.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#claude-code" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="dev_setup" class="md-header__button md-logo" aria-label="dev_setup" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 19V7H4v12zm0-16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-7 14v-2h5v2zm-3.42-4L5.57 9H8.4l3.3 3.3c.39.39.39 1.03 0 1.42L8.42 17H5.59z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            dev_setup
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Claude Code
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/theoneandonlyjohnny/dev_setup" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    theoneandonlyjohnny/dev_setup
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="dev_setup" class="md-nav__button md-logo" aria-label="dev_setup" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 19V7H4v12zm0-16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-7 14v-2h5v2zm-3.42-4L5.57 9H8.4l3.3 3.3c.39.39.39 1.03 0 1.42L8.42 17H5.59z"/></svg>
+
+    </a>
+    dev_setup
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/theoneandonlyjohnny/dev_setup" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    theoneandonlyjohnny/dev_setup
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Instalación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    El setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    El setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apps y paquetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shell/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../terminal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terminal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fonts-and-colors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fuentes y colores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claude Code
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claude Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#claudemd-global" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLAUDE.md global
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CLAUDE.md global">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#por-que-en-ingles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Por qué en inglés?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#las-reglas-una-por-una" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Las reglas, una por una
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Las reglas, una por una">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-interaction-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Interaction Style
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Interaction Style">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zero-fluff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zero Fluff
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#direct-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direct Resolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-token-efficiency-context-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Token Efficiency &amp; Context Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Token Efficiency &amp; Context Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#log-offloading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log Offloading
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#context-optimization-60-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context Optimization (60% Rule)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#milestone-pruning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Milestone Pruning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-context-isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Context Isolation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Context Isolation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#explicit-referencing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explicit Referencing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ignore-artifacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ignore Artifacts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-git-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Git Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Git Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#incremental-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incremental Commits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conventional-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conventional Commits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ticket-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ticket Tracking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-auto-push" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No Auto-Push
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-human-intervention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Human Intervention
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Human Intervention">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#action-required-banners" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Action Required Banners
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-objective-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Objective Work
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Objective Work">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#product-manager-y-lead-architect-primero" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Product Manager y Lead Architect primero
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-context-architecture-execution_planmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Feature Context &amp; Architecture (EXECUTION_PLAN.md)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-breakdown-objectivesmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task Breakdown (OBJECTIVES.md)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status Tracking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strict-serialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strict Serialization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Start
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interruptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interruptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cleanup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handling-scope-creep-bugs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handling Scope Creep &amp; Bugs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rollback-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-keep-docs-current" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Keep Docs Current
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Keep Docs Current">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#keep-docs-current" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keep Docs Current
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-code-standards-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Code Standards &amp; Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Code Standards &amp; Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#idiomatic-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idiomatic Execution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strict-typing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strict Typing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clean-code-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clean Code Principles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#architectural-match" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architectural Match
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-testing-qa-sandbox-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Testing, QA &amp; Sandbox Execution
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Testing, QA &amp; Sandbox Execution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sandbox-awareness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sandbox Awareness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execution-handoffs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Execution Handoffs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Coverage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verification-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification Gate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#settingsjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        settings.json
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skills-y-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skills y plugins
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#herdr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Herdr
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../repository/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cómo funciona el repo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#claudemd-global" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLAUDE.md global
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CLAUDE.md global">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#por-que-en-ingles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Por qué en inglés?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#las-reglas-una-por-una" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Las reglas, una por una
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Las reglas, una por una">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-interaction-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Interaction Style
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Interaction Style">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zero-fluff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zero Fluff
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#direct-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direct Resolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-token-efficiency-context-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Token Efficiency &amp; Context Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Token Efficiency &amp; Context Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#log-offloading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log Offloading
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#context-optimization-60-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context Optimization (60% Rule)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#milestone-pruning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Milestone Pruning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-context-isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Context Isolation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Context Isolation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#explicit-referencing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explicit Referencing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ignore-artifacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ignore Artifacts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-git-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Git Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Git Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#incremental-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incremental Commits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conventional-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conventional Commits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ticket-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ticket Tracking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-auto-push" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No Auto-Push
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-human-intervention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Human Intervention
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Human Intervention">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#action-required-banners" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Action Required Banners
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-objective-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Objective Work
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Objective Work">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#product-manager-y-lead-architect-primero" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Product Manager y Lead Architect primero
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-context-architecture-execution_planmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Feature Context &amp; Architecture (EXECUTION_PLAN.md)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-breakdown-objectivesmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task Breakdown (OBJECTIVES.md)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status Tracking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strict-serialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strict Serialization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Start
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interruptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interruptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cleanup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handling-scope-creep-bugs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handling Scope Creep &amp; Bugs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rollback-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-keep-docs-current" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Keep Docs Current
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Keep Docs Current">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#keep-docs-current" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keep Docs Current
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-code-standards-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Code Standards &amp; Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Code Standards &amp; Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#idiomatic-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idiomatic Execution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strict-typing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strict Typing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clean-code-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clean Code Principles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#architectural-match" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architectural Match
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-testing-qa-sandbox-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Testing, QA &amp; Sandbox Execution
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Testing, QA &amp; Sandbox Execution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sandbox-awareness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sandbox Awareness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execution-handoffs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Execution Handoffs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Coverage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verification-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification Gate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#settingsjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        settings.json
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skills-y-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skills y plugins
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#herdr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Herdr
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/theoneandonlyjohnny/dev_setup/edit/main/docs/claude-code.md" title="Editar esta página" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="claude-code">Claude Code<a class="headerlink" href="#claude-code" title="Permanent link">&para;</a></h1>
+<p>El paso <code>claude</code> (<code>steps/70-claude.sh</code>) hace tres cosas:</p>
+<ol>
+<li>Instala Claude Code con el instalador oficial (<code>~/.local/bin/claude</code>). Si ya está instalado, no lo toca. Se actualiza solo.</li>
+<li>Copia los archivos de <code>manifest.claude.txt</code>: <code>~/.claude/CLAUDE.md</code> y <code>~/.claude/settings.json</code>. Si ya tienes alguno distinto, lo respalda en <code>~/.dotfiles-backup/&lt;timestamp&gt;/</code> antes de reemplazarlo.</li>
+<li>Si tienes Herdr, reinstala su integración (<code>herdr integration install claude</code>). Ver <a href="#herdr">Herdr</a>.</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">¿Ya tienes tu propia configuración de Claude Code?</p>
+<p>Usa <code>./install.sh --skip claude</code> y queda tal cual.</p>
+</div>
+<h2 id="claudemd-global"><code>CLAUDE.md</code> global<a class="headerlink" href="#claudemd-global" title="Permanent link">&para;</a></h2>
+<p><code>~/.claude/CLAUDE.md</code> contiene instrucciones que Claude Code carga al inicio de <strong>cada</strong> sesión, en cualquier proyecto. Complementa el <code>CLAUDE.md</code> de cada repositorio, que guarda el contexto específico de ese proyecto.</p>
+<h3 id="por-que-en-ingles">¿Por qué en inglés?<a class="headerlink" href="#por-que-en-ingles" title="Permanent link">&para;</a></h3>
+<p>El archivo está en inglés a propósito. Este documento lo explica en español.</p>
+<ul>
+<li><strong>Tokens:</strong> los tokenizers se entrenan con texto mayoritariamente en inglés. El mismo contenido en español suele ocupar más tokens, por los acentos, las conjugaciones y las palabras más largas.</li>
+<li><strong>Por qué importa aquí:</strong> este archivo se carga en cada sesión y ocupa ventana de contexto todo el tiempo. Ahorrar tokens en algo que siempre está presente rinde más que ahorrarlos en un prompt suelto.</li>
+<li><strong>Matiz 1:</strong> con prompt caching el costo monetario baja mucho. La ganancia principal es espacio de contexto, no dinero.</li>
+<li><strong>Matiz 2:</strong> los modelos actuales siguen instrucciones en español sin problema. El inglés es una optimización, no un requisito.</li>
+<li><strong>Matiz 3:</strong> las reglas pueden estar en inglés y la conversación en español. Claude responde en el idioma en que le escribes.</li>
+</ul>
+<p>No hay una cifra exacta de ahorro: depende del tokenizer y del texto. Si quieres medirlo, compara ambas versiones con el endpoint de <a href="https://docs.anthropic.com/en/docs/build-with-claude/token-counting">token counting</a> de la API.</p>
+<h2 id="las-reglas-una-por-una">Las reglas, una por una<a class="headerlink" href="#las-reglas-una-por-una" title="Permanent link">&para;</a></h2>
+<p>Cada regla tiene tres partes: <strong>qué</strong> pide, <strong>por qué</strong> existe y un <strong>ejemplo</strong> del comportamiento que produce. Los encabezados usan el nombre original en inglés para que encuentres la regla en el archivo.</p>
+<h3 id="1-interaction-style">1. Interaction Style<a class="headerlink" href="#1-interaction-style" title="Permanent link">&para;</a></h3>
+<h4 id="zero-fluff">Zero Fluff<a class="headerlink" href="#zero-fluff" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> respuestas cortas y centradas en código. Sin saludos, introducciones ni resúmenes de cortesía.</li>
+<li><strong>Por qué:</strong> el texto de relleno cuesta tokens y tiempo de lectura, y no aporta nada.</li>
+<li><strong>Ejemplo:</strong> a "¿cómo borro una rama remota?" responde <code>git push origin --delete mi-rama</code>, sin "¡Claro! Con gusto te ayudo…".</li>
+</ul>
+<h4 id="direct-resolution">Direct Resolution<a class="headerlink" href="#direct-resolution" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> dar la mejor solución. Las alternativas, solo si las pides.</li>
+<li><strong>Por qué:</strong> una lista de cinco opciones te pasa a ti el trabajo de decidir.</li>
+<li><strong>Ejemplo:</strong> para parsear JSON en bash propone <code>jq</code> directamente, sin comparar <code>jq</code>, <code>python -m json.tool</code> y <code>node -e</code>.</li>
+</ul>
+<h3 id="2-token-efficiency-context-management">2. Token Efficiency &amp; Context Management<a class="headerlink" href="#2-token-efficiency-context-management" title="Permanent link">&para;</a></h3>
+<h4 id="log-offloading">Log Offloading<a class="headerlink" href="#log-offloading" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> si un log o la salida de un comando pasa de 30 líneas, lo lee un sub-agente aislado que devuelve solo lo relevante.</li>
+<li><strong>Por qué:</strong> un log de 2000 líneas llena la ventana de contexto de la sesión principal, y casi todo es ruido.</li>
+<li><strong>Ejemplo:</strong> un <code>npm test</code> con 400 líneas de salida lo revisa un sub-agente, que responde "falla <code>auth.test.ts:42</code>, esperaba 200 y recibió 401".</li>
+</ul>
+<h4 id="context-optimization-60-rule">Context Optimization (60% Rule)<a class="headerlink" href="#context-optimization-60-rule" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> recomendar <code>/compact</code> cuando el contexto vaya por el 60 %, mucho antes de que la compactación automática se dispare sola.</li>
+<li><strong>Por qué:</strong> compactar a tiempo, en un punto natural (por ejemplo, al terminar un ticket), da un resumen más limpio que una compactación forzada a mitad de una tarea.</li>
+<li><strong>Ejemplo:</strong> al cerrar un ticket largo, termina con "Recomiendo /compact antes del siguiente".</li>
+</ul>
+<h4 id="milestone-pruning">Milestone Pruning<a class="headerlink" href="#milestone-pruning" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> al terminar un hito importante, resumir el avance y avisar si conviene <code>/clear</code>.</li>
+<li><strong>Por qué:</strong> el contexto de una tarea ya cerrada estorba en la siguiente y puede confundir al modelo.</li>
+<li><strong>Ejemplo:</strong> al cerrar una Epic, resume lo hecho en pocas líneas y sugiere <code>/clear</code> antes de empezar algo no relacionado.</li>
+</ul>
+<h4 id="batch-operations">Batch Operations<a class="headerlink" href="#batch-operations" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> agrupar varias ediciones en una sola llamada, y agrupar requisitos, casos límite y preferencias de testing en una sola pregunta.</li>
+<li><strong>Por qué:</strong> cada ida y vuelta cuesta tokens y tu tiempo.</li>
+<li><strong>Ejemplo:</strong> en vez de preguntar tres cosas en tres mensajes, hace una lista con las tres.</li>
+</ul>
+<h3 id="3-context-isolation">3. Context Isolation<a class="headerlink" href="#3-context-isolation" title="Permanent link">&para;</a></h3>
+<h4 id="explicit-referencing">Explicit Referencing<a class="headerlink" href="#explicit-referencing" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> preferir referencias exactas a archivos (<code>@src/app.ts</code>) en vez de recorrer directorios enteros.</li>
+<li><strong>Por qué:</strong> explorar un repo grande gasta mucho contexto para encontrar un solo archivo.</li>
+<li><strong>Ejemplo:</strong> si mencionas <code>@lib/utils.sh</code>, lee ese archivo en lugar de listar todo <code>lib/</code>.</li>
+</ul>
+<h4 id="ignore-artifacts">Ignore Artifacts<a class="headerlink" href="#ignore-artifacts" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> buscar un <code>.claudeignore</code> y respetarlo, para no leer builds ni dependencias (<code>node_modules/</code>, <code>dist/</code>…).</li>
+<li><strong>Por qué:</strong> esos archivos son enormes y casi nunca son relevantes.</li>
+<li><strong>Ejemplo:</strong> con <code>dist/</code> en <code>.claudeignore</code>, no abre el bundle compilado aunque contenga el texto buscado.</li>
+<li><strong>Nota:</strong> Claude Code no trata <code>.claudeignore</code> como un archivo especial; esta regla hace que Claude lo respete por convención. Para bloquear lecturas de verdad, usa <code>permissions.deny</code> en el <code>settings.json</code> del proyecto.</li>
+</ul>
+<h3 id="4-git-strategy">4. Git Strategy<a class="headerlink" href="#4-git-strategy" title="Permanent link">&para;</a></h3>
+<h4 id="incremental-commits">Incremental Commits<a class="headerlink" href="#incremental-commits" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> hacer commit de los cambios al terminar cada ticket.</li>
+<li><strong>Por qué:</strong> commits pequeños se revisan y se revierten fácilmente.</li>
+<li><strong>Ejemplo:</strong> tres tickets terminados son tres commits, no uno gigante al final.</li>
+</ul>
+<h4 id="conventional-commits">Conventional Commits<a class="headerlink" href="#conventional-commits" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> usar prefijos <a href="https://www.conventionalcommits.org/">Conventional Commits</a>: <code>feat:</code>, <code>fix:</code>, <code>refactor:</code>, <code>docs:</code>…</li>
+<li><strong>Por qué:</strong> el historial se lee de un vistazo y permite generar changelogs.</li>
+<li><strong>Ejemplo:</strong> <code>fix: quote brew cache path in cleanup</code>.</li>
+</ul>
+<h4 id="ticket-tracking">Ticket Tracking<a class="headerlink" href="#ticket-tracking" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> incluir la Epic y el ticket en el mensaje.</li>
+<li><strong>Por qué:</strong> cada commit queda ligado a su tarea en <code>OBJECTIVES.md</code>.</li>
+<li><strong>Ejemplo:</strong> <code>feat(Epic 1.2): add commentary API endpoint</code>.</li>
+</ul>
+<h4 id="no-auto-push">No Auto-Push<a class="headerlink" href="#no-auto-push" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> nunca hacer <code>git push</code> por iniciativa propia.</li>
+<li><strong>Por qué:</strong> publicar es difícil de deshacer. Tú revisas los commits y decides cuándo subirlos.</li>
+<li><strong>Ejemplo:</strong> termina con "Commit <code>a1b2c3d</code> listo" y deja el push en tus manos.</li>
+</ul>
+<h3 id="5-human-intervention">5. Human Intervention<a class="headerlink" href="#5-human-intervention" title="Permanent link">&para;</a></h3>
+<h4 id="action-required-banners">Action Required Banners<a class="headerlink" href="#action-required-banners" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> cuando termina algo o necesita que hagas algo, muestra un banner muy visible con arte ASCII y emojis.</li>
+<li><strong>Por qué:</strong> en una salida larga, la acción que te toca no debe perderse entre el texto.</li>
+<li><strong>Ejemplo:</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>╔══════════════════════════════════════╗
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>║  ⚠️  ACCIÓN REQUERIDA                 ║
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>║  ▶️  Ejecuta: bats tests/             ║
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>╚══════════════════════════════════════╝
+</code></pre></div>
+<h3 id="6-objective-work">6. Objective Work<a class="headerlink" href="#6-objective-work" title="Permanent link">&para;</a></h3>
+<p>Esta sección define cómo se aborda una tarea compleja.</p>
+<h4 id="product-manager-y-lead-architect-primero">Product Manager y Lead Architect primero<a class="headerlink" href="#product-manager-y-lead-architect-primero" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> ante una tarea nueva, analizarla como PM y arquitecto antes de programar. Si falta contexto, hay casos límite sin definir o el diseño es ambiguo, se <strong>detiene</strong> y te hace una lista corta de preguntas.</li>
+<li><strong>Por qué:</strong> suponer mal al principio sale mucho más caro que preguntar.</li>
+<li><strong>Ejemplo:</strong> a "agrega login" responde preguntando: ¿email o OAuth?, ¿sesiones o JWT?, ¿qué pasa con usuarios existentes?</li>
+</ul>
+<h4 id="feature-context-architecture-execution_planmd">Feature Context &amp; Architecture (<code>EXECUTION_PLAN.md</code>)<a class="headerlink" href="#feature-context-architecture-execution_planmd" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> si la tarea vale 3 story points o más, antes de tocar código escribe <code>EXECUTION_PLAN.md</code> con cuatro apartados:</li>
+<li><strong>Feature Goal</strong>: qué logra la feature, en pocas líneas.</li>
+<li><strong>Data &amp; State Changes</strong>: esquemas, modelos o estructuras de estado nuevos.</li>
+<li><strong>System Integration</strong>: qué componentes se crean y cuáles existentes cambian.</li>
+<li><strong>Edge Cases &amp; Logic</strong>: reglas, manejo de errores y flujos que pide la tarea.</li>
+<li><strong>Por qué:</strong> una tarea larga cruza varias sesiones (y compactaciones). El plan en disco mantiene las decisiones aunque el contexto se pierda.</li>
+<li><strong>Ejemplo:</strong> este repositorio se construyó así: el plan guardaba decisiones como "copiar en vez de symlink" o "no tocar la Mac del autor".</li>
+</ul>
+<h4 id="task-breakdown-objectivesmd">Task Breakdown (<code>OBJECTIVES.md</code>)<a class="headerlink" href="#task-breakdown-objectivesmd" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> dividir el plan en Epics (hitos) y tickets (tareas concretas) con un formato fijo.</li>
+<li><strong>Por qué:</strong> tareas pequeñas se pueden verificar una por una.</li>
+<li><strong>Ejemplo:</strong> <code>## Epic 6: Claude Code</code> con <code>- [ ] 4. docs/claude-code.md…</code>.</li>
+</ul>
+<h4 id="status-tracking">Status Tracking<a class="headerlink" href="#status-tracking" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> cada ticket lleva un estado: <code>[ ]</code> sin empezar, <code>[/]</code> en progreso, <code>[x]</code> terminado.</li>
+<li><strong>Por qué:</strong> al retomar en otra sesión se sabe exactamente dónde se quedó.</li>
+<li><strong>Ejemplo:</strong> tras compactar, Claude abre <code>OBJECTIVES.md</code>, ve el <code>[/]</code> y continúa ese ticket.</li>
+</ul>
+<h4 id="strict-serialization">Strict Serialization<a class="headerlink" href="#strict-serialization" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> un solo ticket a la vez.</li>
+<li><strong>Por qué:</strong> cambios mezclados son difíciles de revisar y de revertir.</li>
+<li><strong>Ejemplo:</strong> no empieza la documentación mientras el ticket de tests sigue abierto.</li>
+</ul>
+<h4 id="start">Start<a class="headerlink" href="#start" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> al empezar un ticket, lo marca <code>[/]</code>.</li>
+<li><strong>Por qué:</strong> el archivo refleja siempre el trabajo en curso.</li>
+<li><strong>Ejemplo:</strong> <code>- [/] 4. docs/claude-code.md…</code>.</li>
+</ul>
+<h4 id="stop">Stop<a class="headerlink" href="#stop" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> al terminar, lo marca <code>[x]</code> y se <strong>detiene</strong> hasta que escribas <code>continue</code>.</li>
+<li><strong>Por qué:</strong> te da un punto de control para revisar, probar o cambiar el rumbo entre tickets.</li>
+<li><strong>Ejemplo:</strong> termina con un banner "Escribe <code>continue</code> para el Ticket 7.1".</li>
+</ul>
+<h4 id="interruptions">Interruptions<a class="headerlink" href="#interruptions" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> si la respuesta se corta, con <code>continue</code> retoma exactamente donde se quedó, y el ticket sigue en <code>[/]</code>.</li>
+<li><strong>Por qué:</strong> evita marcar como terminado algo a medias.</li>
+<li><strong>Ejemplo:</strong> un archivo a medio escribir se completa, no se vuelve a empezar desde otro punto.</li>
+</ul>
+<h4 id="cleanup">Cleanup<a class="headerlink" href="#cleanup" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> cuando todos los tickets están en <code>[x]</code>, borra <code>OBJECTIVES.md</code> y archiva o borra <code>EXECUTION_PLAN.md</code>.</li>
+<li><strong>Por qué:</strong> son archivos de trabajo temporales; no deben quedarse en el repositorio.</li>
+<li><strong>Ejemplo:</strong> el último commit de una feature elimina ambos archivos.</li>
+</ul>
+<h4 id="handling-scope-creep-bugs">Handling Scope Creep &amp; Bugs<a class="headerlink" href="#handling-scope-creep-bugs" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> si aparece un bug, una dependencia faltante o un cambio de arquitectura, no lo arregla en silencio: agrega un ticket nuevo y te pregunta qué prioridad darle.</li>
+<li><strong>Por qué:</strong> mantiene cada ticket dentro de su alcance y te deja decidir.</li>
+<li><strong>Ejemplo:</strong> mientras escribe tests encuentra que <code>cleanup</code> no espera confirmación; agrega "🐛 <code>cleanup</code>…" a <code>OBJECTIVES.md</code> y pregunta si lo arregla ya o después.</li>
+</ul>
+<h4 id="rollback-rule">Rollback Rule<a class="headerlink" href="#rollback-rule" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> si un cambio rompe el build o los tests, revierte el archivo en vez de apilar parches, aísla el error y pide guía.</li>
+<li><strong>Por qué:</strong> cinco parches sobre un error mal entendido suelen dejar el código peor que al principio.</li>
+<li><strong>Ejemplo:</strong> un refactor rompe 10 tests: lo revierte, identifica qué función causó la falla y te pregunta cómo seguir.</li>
+</ul>
+<h3 id="7-keep-docs-current">7. Keep Docs Current<a class="headerlink" href="#7-keep-docs-current" title="Permanent link">&para;</a></h3>
+<h4 id="keep-docs-current">Keep Docs Current<a class="headerlink" href="#keep-docs-current" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> después de cada cambio, actualizar <code>CLAUDE.md</code> y <code>README.md</code> del proyecto si hace falta (comandos nuevos, cambios de arquitectura, reglas nuevas).</li>
+<li><strong>Por qué:</strong> documentación desactualizada engaña tanto a personas como a Claude en la siguiente sesión.</li>
+<li><strong>Ejemplo:</strong> al agregar el flag <code>--skip</code>, también se agrega a la sección de comandos del <code>README.md</code>.</li>
+</ul>
+<h3 id="8-code-standards-architecture">8. Code Standards &amp; Architecture<a class="headerlink" href="#8-code-standards-architecture" title="Permanent link">&para;</a></h3>
+<h4 id="idiomatic-execution">Idiomatic Execution<a class="headerlink" href="#idiomatic-execution" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> escribir código idiomático del lenguaje.</li>
+<li><strong>Por qué:</strong> el código idiomático es más fácil de leer y mantener para cualquiera que conozca el lenguaje.</li>
+<li><strong>Ejemplo:</strong> scripts bash con <code>set -euo pipefail</code>; type hints en Python; manejo de errores con <code>if err != nil</code> en Go.</li>
+</ul>
+<h4 id="strict-typing">Strict Typing<a class="headerlink" href="#strict-typing" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> tipos estrictos donde el lenguaje los tenga (TS, C#, Go, Python). Nada de <code>any</code> u <code>object</code> genéricos.</li>
+<li><strong>Por qué:</strong> los tipos detectan errores antes de ejecutar y documentan la intención.</li>
+<li><strong>Ejemplo:</strong> <code>function parseUser(raw: unknown): User</code> en vez de <code>function parseUser(raw: any): any</code>.</li>
+</ul>
+<h4 id="clean-code-principles">Clean Code Principles<a class="headerlink" href="#clean-code-principles" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> guard clauses (retornos tempranos), funciones modulares de menos de ~50 líneas y nombres descriptivos sin abreviaturas.</li>
+<li><strong>Por qué:</strong> menos anidamiento y mejores nombres hacen que el código se explique solo.</li>
+<li><strong>Ejemplo:</strong> <code>if [[ -z "$entries" ]]; then return 0; fi</code> al principio, en vez de envolver toda la función en un <code>if</code>; <code>manifest_entries</code> en vez de <code>me</code>.</li>
+</ul>
+<h4 id="architectural-match">Architectural Match<a class="headerlink" href="#architectural-match" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> seguir la estructura y los patrones que ya tiene el proyecto, sin introducir paradigmas nuevos.</li>
+<li><strong>Por qué:</strong> un proyecto con un solo estilo es más fácil de recorrer.</li>
+<li><strong>Ejemplo:</strong> en este repo, un paso nuevo va en <code>steps/NN-nombre.sh</code> y usa <code>run_cmd</code> de <code>lib/</code>, aunque otro enfoque también funcionaría.</li>
+</ul>
+<h3 id="9-testing-qa-sandbox-execution">9. Testing, QA &amp; Sandbox Execution<a class="headerlink" href="#9-testing-qa-sandbox-execution" title="Permanent link">&para;</a></h3>
+<h4 id="sandbox-awareness">Sandbox Awareness<a class="headerlink" href="#sandbox-awareness" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> asumir que algunos comandos (<code>npm</code>, <code>dotnet</code>, <code>go mod</code>, migraciones) pueden no estar disponibles en el entorno de Claude.</li>
+<li><strong>Por qué:</strong> evita que Claude insista con comandos que no puede ejecutar.</li>
+<li><strong>Ejemplo:</strong> si <code>dotnet</code> no existe, no intenta instalarlo: te pasa el comando.</li>
+</ul>
+<h4 id="execution-handoffs">Execution Handoffs<a class="headerlink" href="#execution-handoffs" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> si un ticket requiere correr tests, instalar dependencias o compilar y no puede hacerlo, te da el comando exacto con un banner y espera a que pegues la salida.</li>
+<li><strong>Por qué:</strong> tú controlas lo que corre en tu máquina, y el ticket no se da por bueno sin un resultado real.</li>
+<li><strong>Ejemplo:</strong> "▶️ Ejecuta <code>npm run migrate</code> y pega la salida".</li>
+</ul>
+<h4 id="test-coverage">Test Coverage<a class="headerlink" href="#test-coverage" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> al escribir utilidades o lógica compleja, agregar o actualizar sus tests unitarios.</li>
+<li><strong>Por qué:</strong> los tests protegen la lógica de regresiones futuras.</li>
+<li><strong>Ejemplo:</strong> la comparación de <code>settings.json</code> ignorando <code>hooks</code> llegó con tres tests en <code>tests/claude.bats</code>, incluido uno que falla sin el arreglo.</li>
+</ul>
+<h4 id="verification-gate">Verification Gate<a class="headerlink" href="#verification-gate" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Qué:</strong> no marcar un ticket <code>[x]</code> sin verificarlo, sea con herramientas disponibles o con la salida que tú pegues.</li>
+<li><strong>Por qué:</strong> "debería funcionar" no es lo mismo que "funciona".</li>
+<li><strong>Ejemplo:</strong> antes de cerrar un ticket corre <code>bats tests/</code> y confirma que todo pasa.</li>
+</ul>
+<h2 id="settingsjson"><code>settings.json</code><a class="headerlink" href="#settingsjson" title="Permanent link">&para;</a></h2>
+<p><code>~/.claude/settings.json</code> es la configuración de usuario de Claude Code. La versión del repo (<code>home/.claude/settings.json</code>) está limpia: no incluye <code>autoMode</code> (tiene detalles de proyectos privados) ni <code>hooks</code> (Herdr los regenera).</p>
+<table>
+<thead>
+<tr>
+<th>Clave</th>
+<th>Valor</th>
+<th>Qué hace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>effortLevel</code></td>
+<td><code>"xhigh"</code></td>
+<td>Nivel de esfuerzo de razonamiento por defecto. Más alto = respuestas más pensadas, pero más lentas y con más tokens.</td>
+</tr>
+<tr>
+<td><code>modelSettings</code></td>
+<td><code>claude-sonnet-5</code> y <code>claude-opus-5-5</code> en <code>"high"</code></td>
+<td>Ajustes por modelo. Aquí sobrescribe <code>effortLevel</code> para esos dos modelos.</td>
+</tr>
+<tr>
+<td><code>tui</code></td>
+<td><code>"fullscreen"</code></td>
+<td>La interfaz ocupa toda la terminal.</td>
+</tr>
+<tr>
+<td><code>theme</code></td>
+<td><code>"dark-ansi"</code></td>
+<td>Tema oscuro que usa los 16 colores ANSI de la terminal, así respeta la paleta de Ghostty (Catppuccin).</td>
+</tr>
+<tr>
+<td><code>autoCompactEnabled</code></td>
+<td><code>true</code></td>
+<td>Compacta el contexto automáticamente cuando se llena. La regla del 60 % recomienda hacerlo antes a mano; esto es la red de seguridad.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Personalizar</p>
+<ul>
+<li>En tu máquina, edita <code>~/.claude/settings.json</code>. <code>theme</code> también se cambia con <code>/theme</code>, y la compactación automática con <code>/config</code>.</li>
+<li>Si vuelves a correr <code>install.sh</code>, se reemplaza el archivo (con respaldo). Para evitarlo, usa <code>--skip claude</code>.</li>
+<li>En tu fork, edita <code>home/.claude/settings.json</code>. No agregues claves privadas: <code>tests/repo.bats</code> falla si aparecen <code>autoMode</code>, <code>hooks</code>, <code>env</code> o <code>apiKeyHelper</code>.</li>
+<li>Para quitar una clave, bórrala: Claude Code usa su valor por defecto.</li>
+</ul>
+</div>
+<h2 id="skills-y-plugins">Skills y plugins<a class="headerlink" href="#skills-y-plugins" title="Permanent link">&para;</a></h2>
+<p>No se versionan. Las skills y plugins que aparecen en <code>~/.claude/skills/synced/</code> y <code>~/.claude/plugins/synced/</code> se sincronizan desde tu cuenta de claude.ai al iniciar sesión con <code>claude</code>. Los plugins de marketplaces (como <code>claude-plugins-official</code>) se instalan desde Claude Code con <code>/plugin</code>.</p>
+<p>Tampoco se versiona el estado privado: <code>~/.claude.json</code>, <code>history.jsonl</code>, <code>projects/</code>, <code>sessions/</code>, <code>file-history/</code> ni <code>stats-cache.json</code>.</p>
+<h2 id="herdr">Herdr<a class="headerlink" href="#herdr" title="Permanent link">&para;</a></h2>
+<p>Herdr muestra el estado de cada agente (trabajando, esperando, terminado). Para eso agrega un hook (<code>herdr-agent-state</code>) al <code>settings.json</code> de Claude.</p>
+<p>Como el <code>settings.json</code> del repo no trae <code>hooks</code>, el paso <code>claude</code> hace esto:</p>
+<ol>
+<li>Copia <code>settings.json</code>.</li>
+<li>Revisa si el hook de Herdr está activo: <code>herdr integration status</code> dice <code>claude: current</code> y el hook aparece en <code>settings.json</code>.</li>
+<li>Si no lo está, ejecuta <code>herdr integration install claude</code>.</li>
+</ol>
+<p>En siguientes ejecuciones, <code>settings.json</code> se compara <strong>ignorando</strong> <code>hooks</code>. Si la única diferencia es el hook de Herdr, el archivo no se toca. Si Herdr no está instalado, el paso solo muestra un aviso.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../git/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Git">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Git
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../repository/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Cómo funciona el repo">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Cómo funciona el repo
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.action.edit", "content.code.copy", "navigation.footer", "navigation.instant", "navigation.sections", "navigation.top", "navigation.tracking", "search.highlight", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
