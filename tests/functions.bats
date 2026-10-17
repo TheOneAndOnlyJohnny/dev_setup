@@ -98,8 +98,9 @@ run_cleanup() {
   create_cleanup_stubs
   mkdir -p "$BATS_TEST_TMPDIR/home"
   run_cleanup <<<""
-  ! grep -q "/System/Library/Caches" "$TRACE_FILE"
-  ! grep -q "/private/var/log" "$TRACE_FILE"
+  # `run` + status: a bare `! grep` mid-test never fails it (bats' errexit ignores negations).
+  run grep -qE "/System/Library/Caches|/private/var/log" "$TRACE_FILE"
+  [ "$status" -eq 1 ]
 }
 
 # --- genpass ------------------------------------------------------------------

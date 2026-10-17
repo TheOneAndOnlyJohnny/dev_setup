@@ -84,7 +84,9 @@ run_vscode_step() {
   local ids
   ids="$(sed -e 's/#.*//' -e 's/[[:space:]]//g' "$REPO_ROOT/vscode/extensions.txt" | grep -v '^$' | tr '[:upper:]' '[:lower:]')"
   [ -n "$ids" ]
-  ! grep -vqE '^[a-z0-9-]+\.[a-z0-9-]+$' <<<"$ids"
+  # `run` + status: a bare `! grep` mid-test never fails it (bats' errexit ignores negations).
+  run grep -vqE '^[a-z0-9-]+\.[a-z0-9-]+$' <<<"$ids"
+  [ "$status" -eq 1 ]
   [ -z "$(sort <<<"$ids" | uniq -d)" ]
 }
 
