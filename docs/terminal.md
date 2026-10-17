@@ -4,9 +4,7 @@ La terminal es **Ghostty** con **Herdr** encima. Las dos se instalan desde `Brew
 
 ## Ghostty
 
-Archivo: `~/Library/Application Support/com.mitchellh.ghostty/config.ghostty`
-
-```ini title="config.ghostty"
+```ini title="~/Library/Application Support/com.mitchellh.ghostty/config.ghostty"
 font-family = "IosevkaTerm Nerd Font Mono"
 theme = Catppuccin Frappe
 window-padding-x = 10
@@ -32,9 +30,7 @@ Solo se versiona `config.ghostty`. La carpeta `auto/`, que escribe el selector d
 
 [Herdr](https://herdr.dev) es un multiplexor de agentes: corre varias sesiones de agentes (como Claude Code) dentro de la terminal y muestra el estado de cada una.
 
-Archivo: `~/.config/herdr/config.toml`
-
-```toml title="config.toml"
+```toml title="~/.config/herdr/config.toml"
 onboarding = false
 
 [ui.toast]

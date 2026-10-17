@@ -45,7 +45,7 @@ Algunos archivos del repo son versiones limpias que difieren a propósito de los
 
 1. Ponlo en `home/` con la misma ruta que tendrá en `$HOME`. Ejemplo: `~/.config/foo/config.toml` → `home/.config/foo/config.toml`.
 2. Agrega la ruta, relativa a `$HOME`, a `manifest.txt`: `.config/foo/config.toml`.
-3. Documéntalo en la página que corresponda de `docs/`.
+3. Documéntalo en la página que corresponda de `docs/`. Si muestras el archivo completo, usa un bloque de código con su ruta como título (```` ```toml title="~/.config/foo/config.toml" ````): un test revisa que sea idéntico al de `home/`.
 
 Los tests fallan si un archivo de `home/` no está en el manifest, o al revés.
 
@@ -82,7 +82,7 @@ Los dos vienen en `Brewfile`. No hay CI: córrelos antes de cada commit.
 
 | Test | Qué revisa |
 |---|---|
-| `repo.bats` | El manifest coincide con `home/`; no hay rutas `/Users/…`; los archivos de zsh y Ghostty son válidos; `docs/claude-code.md` explica cada regla y cada clave; cada página de `docs/` está en el menú del sitio |
+| `repo.bats` | El manifest coincide con `home/`; no hay rutas `/Users/…`; los archivos de zsh y Ghostty son válidos; `docs/claude-code.md` explica cada regla y cada clave; cada página de `docs/` está en el menú del sitio; los bloques de código con título `~/<ruta>` son idénticos al archivo de `home/` |
 | `install.bats` | Opciones, orden de pasos y `--skip`, con pasos de prueba |
 | `lib.bats` | Las funciones de `lib/` |
 | `<paso>.bats` | Cada paso, con comandos del sistema (`brew`, `uname`…) simulados |

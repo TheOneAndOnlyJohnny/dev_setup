@@ -103,3 +103,23 @@ PY
   done < <(cd "$REPO_ROOT/docs" && find . -name '*.md' | sed 's|^\./||')
   [ -z "$mismatched" ] || { echo "Docs ↔ nav mismatch: $mismatched"; false; }
 }
+
+@test "docs code blocks titled with a ~/ path match that file under home/" {
+  run python3 - "$REPO_ROOT" <<'PY'
+import pathlib, re, sys
+repo_root = pathlib.Path(sys.argv[1])
+block_pattern = re.compile(r'^```\S* title="~/([^"]+)"\n(.*?)^```$', re.M | re.S)
+checked_blocks, mismatches = 0, []
+for doc_file in sorted((repo_root / "docs").rglob("*.md")):
+    for match in block_pattern.finditer(doc_file.read_text()):
+        checked_blocks += 1
+        home_file = repo_root / "home" / match[1]
+        if not home_file.is_file():
+            mismatches.append(f"{doc_file.name}: ~/{match[1]} is not under home/")
+        elif match[2].rstrip("\n") != home_file.read_text().rstrip("\n"):
+            mismatches.append(f"{doc_file.name}: ~/{match[1]} differs from home/")
+print("\n".join(mismatches) or f"{checked_blocks} blocks match")
+sys.exit(1 if mismatches or checked_blocks == 0 else 0)
+PY
+  [ "$status" -eq 0 ] || { echo "$output"; false; }
+}
